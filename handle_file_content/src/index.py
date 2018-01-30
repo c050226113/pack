@@ -202,8 +202,11 @@ class ReadTask(threading.Thread):
                 if len(self.task_q) <= 0 and flag is True:
                     flag = False
                     STD.flush('fresh')
-                    if self.ws['ws']:
-                        self.ws['ws'].send(self.name)
+                    try:
+                        if self.ws['ws']:
+                            self.ws['ws'].send(self.name)
+                    except:
+                        Util.err()
             time.sleep(0.5)
 
 
